@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">NoteApp</string>
+
+    <string name="splash_des">This process will take some time.</string>
+    <string name="language">Language</string>
+    <string name="title_onb_1">Create and Manage Notes Effortlessly</string>
+    <string name="title_onb_2">Organize Notes by Categories</string>
+    <string name="title_onb_3">Access Your Notes Anywhere, Anytime</string>
+    <string name="des_onb_1">Keep all your ideas, tasks, and lists in one place. Create notes quickly and organize them easily with a simple, intuitive interface.</string>
+    <string name="des_onb_2">Sort your notes into categories or topics to easily find and track them. Never miss an important note again!</string>
+    <string name="des_onb_3">Use the sync feature to access your notes across all devices. Write notes on your phone, tablet, or desktop — wherever you are!</string>
+    <string name="next">Next</string>
+    <string name="get_started">Get Started</string>
 </resources>
