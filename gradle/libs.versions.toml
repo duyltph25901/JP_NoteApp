@@ -17,6 +17,7 @@ hiltComposeVer = "1.2.0"
 hiltAndroidCompilerVer = "2.51.1"
 roomVer = "2.6.1"
 runtimeLivedata = "1.7.8"
+ctsVer = "1.0.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -44,6 +45,7 @@ dep-room = { module = "androidx.room:room-runtime", version.ref = "roomVer"}
 dep-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomVer"}
 dep-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomVer"}
 androidx-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "runtimeLivedata" }
+dep-cts-compose = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "ctsVer" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

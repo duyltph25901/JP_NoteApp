@@ -72,4 +72,6 @@ dependencies {
     implementation(libs.dep.room)
     implementation(libs.dep.room.ktx)
     ksp(libs.dep.room.compiler)
+    // constrain layout
+    implementation(libs.dep.cts.compose)
 }

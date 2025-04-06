@@ -12,4 +12,5 @@ object AppConst {
     internal const val HOME_ROUTE = "home_screen_route"
 
     internal const val DATABASE_NAME = "NOTE_APP_DATABASE.db"
+    internal const val BG_SCREEN = "#252525"
 }
