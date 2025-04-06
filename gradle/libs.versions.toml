@@ -11,6 +11,12 @@ composeBom = "2024.04.01"
 
 navVer = "2.8.9"
 horizontalPagerVer = "0.12.0"
+kspVer = "2.0.0-1.0.22"
+hiltVer = "2.51.1"
+hiltComposeVer = "1.2.0"
+hiltAndroidCompilerVer = "2.51.1"
+roomVer = "2.6.1"
+runtimeLivedata = "1.7.8"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -30,9 +36,20 @@ androidx-material3 = { group = "androidx.compose.material3", name = "material3" 
 
 dep-nav = { module = "androidx.navigation:navigation-compose", version.ref = "navVer" }
 dep-horizontal-pager = { module = "com.google.accompanist:accompanist-pager", version.ref = "horizontalPagerVer" }
+dep-hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltVer" }
+dep-hilt-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltComposeVer" }
+dep-hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltAndroidCompilerVer" }
+dep-hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hiltVer" }
+dep-room = { module = "androidx.room:room-runtime", version.ref = "roomVer"}
+dep-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomVer"}
+dep-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomVer"}
+androidx-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "runtimeLivedata" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "kspVer" }
+kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hiltVer" }
 

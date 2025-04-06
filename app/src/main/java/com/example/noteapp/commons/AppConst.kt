@@ -11,4 +11,5 @@ object AppConst {
     internal const val ONB_ROUTE = "onboarding_screen_route"
     internal const val HOME_ROUTE = "home_screen_route"
 
+    internal const val DATABASE_NAME = "NOTE_APP_DATABASE.db"
 }

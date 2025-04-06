@@ -1,9 +1,11 @@
 package com.example.noteapp.presentation.nav
 
 import androidx.compose.runtime.Composable
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.noteapp.model.viewmodel.HomeViewModel
 import com.example.noteapp.presentation.screens.home.HomeScreen
 import com.example.noteapp.presentation.screens.language.LanguageScreen
 import com.example.noteapp.presentation.screens.onb.OnbScreen
@@ -44,7 +46,10 @@ fun NavGraph() {
         composable(
             route = Routes.HomeRoute.route
         ) {
-            HomeScreen()
+            val viewModel = hiltViewModel<HomeViewModel>()
+            HomeScreen(
+                viewModel = viewModel
+            )
         }
     }
 }
