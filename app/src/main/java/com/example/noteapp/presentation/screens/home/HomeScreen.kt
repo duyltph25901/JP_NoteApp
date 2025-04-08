@@ -24,12 +24,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -38,27 +41,29 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.distinctUntilChanged
+import androidx.navigation.NavController
 import com.example.noteapp.R
 import com.example.noteapp.commons.AppConst.BG_SCREEN
+import com.example.noteapp.commons.AppConst.FLAG_FEATURE_ADD_NOTE
+import com.example.noteapp.commons.DummyData.dummyNotes
 import com.example.noteapp.data.local.repository.NoteRepository
 import com.example.noteapp.data.local.storage.note.NoteDao
 import com.example.noteapp.model.viewmodel.HomeViewModel
+import com.example.noteapp.presentation.nav.Routes
+import com.example.noteapp.presentation.screens.home.components.EmptyNotes
 import com.example.noteapp.presentation.screens.home.components.HeaderHome
+import com.example.noteapp.presentation.screens.home.components.NotesView
 import com.example.noteapp.ui.theme.NoteAppTheme
 
 @Composable
 fun HomeScreen(
-    viewModel: HomeViewModel
+    navController: NavController,
+    viewModel: HomeViewModel,
 ) {
 
     val noteRecords by
     viewModel.listRecords.observeAsState(emptyList())
-
-    LaunchedEffect(
-        key1 = true
-    ) {
-        Log.d("duylt", "Size of array: ${noteRecords.size}")
-    }
 
     Scaffold(
         modifier = Modifier.fillMaxSize()
@@ -91,7 +96,26 @@ fun HomeScreen(
                         weight = 1f
                     ),
             ) {
-                val btnAdd = createRef()
+                val (btnAdd, containerList) = createRefs()
+
+                Box(
+                    modifier = Modifier.fillMaxSize()
+                        .constrainAs(containerList) {
+                            top.linkTo(parent.top)
+                            start.linkTo(parent.start)
+                            end.linkTo(parent.end)
+                            bottom.linkTo(parent.bottom)
+                        },
+                    contentAlignment = Alignment.Center
+                ) {
+                    if (noteRecords.isEmpty()) EmptyNotes()
+                    else NotesView(
+                        notes = noteRecords,
+                        onNoteClicked = { noteClicked ->
+
+                        }
+                    )
+                }
 
                 Image(
                     modifier = Modifier.constrainAs(
@@ -105,7 +129,9 @@ fun HomeScreen(
                     ).size(
                         size = 80.dp
                     ).clickable {
-
+                        moveToEditorScreen(
+                            navController = navController
+                        )
                     },
                     painter = painterResource(
                         id = R.drawable.ic_add_circle
@@ -118,12 +144,10 @@ fun HomeScreen(
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun PreviewHomeScreen() {
-    NoteAppTheme {
-        HomeScreen(
-            viewModel = hiltViewModel<HomeViewModel>()
+private fun moveToEditorScreen(navController: NavController) {
+    navController.navigate(
+        route = Routes.EditorRoute.passEditorParams(
+            flagFeature = FLAG_FEATURE_ADD_NOTE,
         )
-    }
+    )
 }
